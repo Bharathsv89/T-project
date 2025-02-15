@@ -27,8 +27,8 @@ pipeline {
             steps {
                 script {
                     def publicIp = sh(script: 'terraform output public_ip', returnStdout: true).trim()
-                    sh "scp -o StrictHostKeyChecking=no -i /path/to/your-key.pem install_dependencies.sh ec2-user@${publicIp}:/home/ec2-user/"
-                    sh "ssh -o StrictHostKeyChecking=no -i /path/to/your-key.pem ec2-user@${publicIp} 'bash /home/ec2-user/install_dependencies.sh'"
+                    sh "scp -o StrictHostKeyChecking=no -i /var/lib/jenkins/vm-key.pem install_dependencies.sh ec2-user@${publicIp}:/home/ec2-user/"
+                    sh "ssh -o StrictHostKeyChecking=no -i /var/lib/jenkins/vm-key.pem ec2-user@${publicIp} 'bash /home/ec2-user/install_dependencies.sh'"
                 }
             }
         }
@@ -37,8 +37,8 @@ pipeline {
             steps {
                 script {
                     def publicIp = sh(script: 'terraform output public_ip', returnStdout: true).trim()
-                    sh "scp -o StrictHostKeyChecking=no -i /path/to/your-key.pem Dockerfile ec2-user@${publicIp}:/home/ec2-user/"
-                    sh "ssh -o StrictHostKeyChecking=no -i /path/to/your-key.pem ec2-user@${publicIp} 'docker build -t tomcat-app . && docker run -d -p 8080:8080 tomcat-app'"
+                    sh "scp -o StrictHostKeyChecking=no -i /var/lib/jenkins/vm-key.pem Dockerfile ec2-user@${publicIp}:/home/ec2-user/"
+                    sh "ssh -o StrictHostKeyChecking=no -i /var/lib/jenkins/vm-key.pem ec2-user@${publicIp} 'docker build -t tomcat-app . && docker run -d -p 8080:8080 tomcat-app'"
                 }
             }
         }
