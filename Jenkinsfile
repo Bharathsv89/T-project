@@ -4,7 +4,7 @@ pipeline {
     environment {
         AWS_ACCESS_KEY_ID     = credentials('aws-cred')
         AWS_SECRET_ACCESS_KEY = credentials('aws-passwd')
-        S3_BUCKET             = 'my-s3bucket-9890'
+         S3_BUCKET             = 'my-s3bucket-9890'
     }
 
     stages {
@@ -40,12 +40,6 @@ pipeline {
                     sh "scp -o StrictHostKeyChecking=no -i /var/lib/jenkins/vm-key.pem Dockerfile ec2-user@${publicIp}:/home/ec2-user/"
                     sh "ssh -o StrictHostKeyChecking=no -i /var/lib/jenkins/vm-key.pem ec2-user@${publicIp} 'docker build -t tomcat-app . && docker run -d -p 8080:8080 tomcat-app'"
                 }
-            }
-        }
-
-        stage('Terraform Destroy') {
-            steps {
-                sh 'terraform destroy -auto-approve'
             }
         }
     }
