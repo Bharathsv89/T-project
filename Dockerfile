@@ -1,9 +1,9 @@
-FROM amazonlinux:2
+FROM amazonlinux:latest
 
 # Install dependencies
-RUN yum update -y && \
-    yum install -y java-11-openjdk-devel tar gzip && \
-    yum clean all
+RUN dnf update -y && \
+    dnf install -y java-17-amazon-corretto-devel tar gzip && \
+    dnf clean all
 
 # Download and install Tomcat
 RUN curl -O https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.80/bin/apache-tomcat-9.0.80.tar.gz && \
