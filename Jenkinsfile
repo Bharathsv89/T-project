@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: env.GITHUB_REPO
+                git branch: 'main', url: 'https://github.com/Bharathsv89/T-project.git'
             }
         }
 
