@@ -3,24 +3,10 @@ provider "aws" {
   region = "us-east-1"
 }
 
-# Create an S3 bucket for Terraform state
-resource "aws_s3_bucket" "terraform_state" {
-  bucket = "my-s3bucket-9890" # Replace with a unique bucket name
-  acl    = "private"
-
-  versioning  {
-    enabled = true
-  }
-
-  tags = {
-    Name = "Terraform State Bucket"
-  }
-}
-
 # Configure Terraform to use the S3 bucket for state storage
 terraform {
   backend "s3" {
-    bucket = "my-s3bucket-9890" # Replace with the bucket name above
+    bucket = "my-s3bucket-9890" # Replace with your S3 bucket name
     key    = "terraform.tfstate"
     region = "us-east-1"
   }
