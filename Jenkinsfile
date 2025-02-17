@@ -14,27 +14,6 @@ pipeline {
             }
         }
 
-        stage('Install Terraform') {
-            steps {
-                sh '''
-                    # Download Terraform
-                    wget https://releases.hashicorp.com/terraform/1.5.7/terraform_1.5.7_linux_amd64.zip
-
-                    # Unzip the Terraform binary
-                    unzip -o terraform_1.5.7_linux_amd64.zip
-
-                    # Move Terraform to /usr/local/bin (requires sudo)
-                     sudo mv terraform /usr/local/bin/
-
-                    # Make Terraform executable
-                    sudo chmod +x /usr/local/bin/terraform
-
-                    # Verify Terraform installation
-                    terraform --version
-                '''
-            }
-        }
-
         stage('Terraform Apply') {
             steps {
                 sh '''
