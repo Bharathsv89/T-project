@@ -48,4 +48,16 @@ pipeline {
             steps {
                 script {
                     def publicIp = sh(script: 'terraform output public_ip', returnStdout: true).trim()
-                    sh "scp -o StrictHostKeyChecking=no -i /var/lib/jenkins/vm-key.pem Dockerfile ec2-user@
+                    sh "scp -o StrictHostKeyChecking=no -i /var/lib/jenkins/vm-key.pem Dockerfile ec2-user@${publicIp}:/home/ec2-user/"
+                    sh "ssh -o StrictHostKeyChecking=no -i /var/lib/jenkins/vm-key.pem ec2-user@${publicIp} 'docker build -t tomcat-app . && docker run -d -p 8080:8080 tomcat-app'"
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo "Public IP of the EC2 instance: ${sh(script: 'terraform output public_ip', returnStdout: true).trim()}"
+        }
+    }
+}
