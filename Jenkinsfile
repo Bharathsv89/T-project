@@ -24,10 +24,10 @@ pipeline {
                     unzip -o terraform_1.5.7_linux_amd64.zip
 
                     # Move Terraform to /usr/local/bin (requires sudo)
-                     mv terraform /usr/local/bin/
+                     sudo mv terraform /usr/local/bin/
 
                     # Make Terraform executable
-                     chmod +x /usr/local/bin/terraform
+                    sudo chmod +x /usr/local/bin/terraform
 
                     # Verify Terraform installation
                     terraform --version
