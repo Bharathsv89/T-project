@@ -19,7 +19,8 @@ pipeline {
                 sh '''
                     # Download and install Terraform
                     wget https://releases.hashicorp.com/terraform/1.5.7/terraform_1.5.7_linux_amd64.zip
-                    unzip terraform_1.5.7_linux_amd64.zip
+                    unzip -o terraform_1.5.7_linux_amd64.zip
+
                     mkdir -p $HOME/bin
                     mv terraform $HOME/bin/
                     chmod +x $HOME/bin/terraform
