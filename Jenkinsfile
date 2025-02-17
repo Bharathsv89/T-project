@@ -21,7 +21,7 @@ pipeline {
                     wget https://releases.hashicorp.com/terraform/1.5.7/terraform_1.5.7_linux_amd64.zip
 
                     # Unzip the Terraform binary
-                    unzip terraform_1.5.7_linux_amd64.zip
+                    unzip -y terraform_1.5.7_linux_amd64.zip
 
                     # Move Terraform to /usr/local/bin (requires sudo)
                      mv terraform /usr/local/bin/
