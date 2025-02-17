@@ -23,7 +23,7 @@ RUN sed -i 's/"127\\.\\d+\\.\\d+\\.\\d+|::1|0:0:0:0:0:0:0:1"/".*"/g' \
     /opt/apache-tomcat-10.1.35/webapps/manager/META-INF/context.xml
 
 # Configure tomcat-users.xml with user and roles
-RUN mv /opt/apache-tomcat-10.1.35/conf/tomcat-users.xml /opt/apache-tomcat-10.1.34/conf/bkp_tomcat-users.xml_23Apr24 \
+RUN mv /opt/apache-tomcat-10.1.35/conf/tomcat-users.xml /opt/apache-tomcat-10.1.35/conf/bkp_tomcat-users.xml_23Apr24 \
     && echo '<?xml version="1.0" encoding="utf-8"?> \
 <tomcat-users> \
     <role rolename="manager-gui"/> \
