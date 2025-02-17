@@ -32,3 +32,11 @@ RUN mv /opt/apache-tomcat-10.1.35/conf/tomcat-users.xml /opt/apache-tomcat-10.1.
 
 # Modify server.xml to change the port from 8080 to 8091
 RUN sed -i 's/Connector port="8080"/Connector port="8091"/g' /opt/apache-tomcat-10.1.35/conf/server.xml
+
+
+# Expose the new Tomcat port
+EXPOSE 8091
+
+# Start Tomcat server
+CMD ["/opt/apache-tomcat-10.1.35/bin/catalina.sh", "run"]
+
