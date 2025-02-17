@@ -17,10 +17,16 @@ pipeline {
         stage('Install Terraform') {
             steps {
                 sh '''
+                    # Download and install Terraform
                     wget https://releases.hashicorp.com/terraform/1.5.7/terraform_1.5.7_linux_amd64.zip
                     unzip terraform_1.5.7_linux_amd64.zip
-                    sudo mv terraform /usr/local/bin/
-                    chmod +x /usr/local/bin/terraform
+                    mkdir -p $HOME/bin
+                    mv terraform $HOME/bin/
+                    chmod +x $HOME/bin/terraform
+
+                    # Add Terraform to PATH
+                    echo 'export PATH=$HOME/bin:$PATH' >> $HOME/.bashrc
+                    source $HOME/.bashrc
                 '''
             }
         }
