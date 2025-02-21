@@ -23,6 +23,15 @@ pipeline {
             }
         }
 
+        stage('Get Public IP') {
+            steps {
+                script {
+                    def publicIp = sh(script: 'terraform output public_ip', returnStdout: true).trim()
+                    echo "Public IP of the EC2 instance: ${publicIp}"
+                }
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
                 script {
